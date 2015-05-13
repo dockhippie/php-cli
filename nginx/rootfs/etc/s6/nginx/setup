@@ -1,0 +1,10 @@
+#!/bin/bash
+
+chown -R nginx:www-data \
+  /var/lib/nginx
+
+if [ -n "${CONFIG_PRESET}" ]
+then
+  sed -i "s/presets\/default/presets\/${CONFIG_PRESET}/" \
+    /etc/nginx/nginx.conf
+fi

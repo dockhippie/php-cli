@@ -1,8 +1,0 @@
-#!/bin/sh
-mkdir -p /tmp/nginx && chown nginx /tmp/nginx
-
-if [ "$CONFIG_PRESET" != "" ] ; then
- sed -i "s/presets\/default/presets\/$CONFIG_PRESET/" /etc/nginx/nginx.conf
-fi
-
-/usr/sbin/nginx

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -f ./setup ]
+then
+  ./setup
+fi
+
+/usr/sbin/nginx
