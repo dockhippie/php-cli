@@ -15,8 +15,8 @@ docker run -ti -v $(pwd)/public:/app/public -p 80:80 --name php-nginx webhippie/
 
 This image includes some configuration presets for various applications:
 
-* `contao`: Preset to run a [ContaoCMS](http://contao.org) application
-* `owncloud`: Preset to run a [Owncloud](http://owncloud.org) application
+* `contao`: Preset to run [ContaoCMS](http://contao.org)
+* `owncloud`: Preset to run [Owncloud](http://owncloud.org)
 
 Use a preset by passing `-e CONFIG_PRESET=<name>` to docker run
 
