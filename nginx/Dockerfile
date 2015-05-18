@@ -33,7 +33,7 @@ RUN apk add --update \
 VOLUME ["/app"]
 
 ADD rootfs /
-EXPOSE 6379
+EXPOSE 80
 
 WORKDIR /app
 CMD ["/usr/bin/s6-svscan","/etc/s6"]
