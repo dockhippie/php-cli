@@ -1,5 +1,5 @@
 FROM webhippie/alpine:latest
-MAINTAINER Christoph Wiechert <wio@psitrax.de>
+MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 RUN apk add --update \
   nginx \
@@ -28,15 +28,17 @@ RUN apk add --update \
   php-xml \
   php-zip \
   php-zlib && \
-  rm -rf /var/cache/apk/*
+  rm -rf /var/cache/apk/* && \
+  rm -rf /etc/php/* && \
+  rm -rf /etc/nginx/*
 
-RUN curl -sS https://getcomposer.org/installer \
-  | php -- --install-dir=/usr/bin --filename=composer
-
-VOLUME ["/app"]
+VOLUME ["/app", "/etc/nginx/custom.d", "/etc/php/custom.d"]
 
 ADD rootfs /
 EXPOSE 80
+
+RUN curl -sS https://getcomposer.org/installer \
+  | php -- --install-dir=/usr/bin --filename=composer
 
 WORKDIR /app
 CMD ["/usr/bin/s6-svscan","/etc/s6"]
