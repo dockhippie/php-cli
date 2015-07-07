@@ -30,7 +30,8 @@ RUN apk add --update \
   php-zlib && \
   rm -rf /var/cache/apk/* && \
   rm -rf /etc/php/* && \
-  rm -rf /etc/nginx/*
+  rm -rf /etc/nginx/* && \
+  chsh -s /bin/bash nginx
 
 VOLUME ["/etc/nginx/custom.d", "/etc/php/custom.d"]
 

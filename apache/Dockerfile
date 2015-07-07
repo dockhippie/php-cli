@@ -32,7 +32,8 @@ RUN apk add --update \
   php-zlib && \
   rm -rf /var/cache/apk/* && \
   rm -rf /etc/php/* && \
-  rm -rf /etc/apache2/*
+  rm -rf /etc/apache2/* && \
+  chsh -s /bin/bash apache
 
 VOLUME ["/etc/apache2/custom.d", "/etc/php/custom.d"]
 
