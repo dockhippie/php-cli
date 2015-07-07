@@ -32,7 +32,7 @@ RUN apk add --update \
   rm -rf /etc/php/* && \
   rm -rf /etc/nginx/*
 
-VOLUME ["/app", "/etc/nginx/custom.d", "/etc/php/custom.d"]
+VOLUME ["/etc/nginx/custom.d", "/etc/php/custom.d"]
 
 ADD rootfs /
 EXPOSE 80

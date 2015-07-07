@@ -34,7 +34,7 @@ RUN apk add --update \
   rm -rf /etc/php/* && \
   rm -rf /etc/apache2/*
 
-VOLUME ["/app", "/etc/apache2/custom.d", "/etc/php/custom.d"]
+VOLUME ["/etc/apache2/custom.d", "/etc/php/custom.d"]
 
 ADD rootfs /
 EXPOSE 80
