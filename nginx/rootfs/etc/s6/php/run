@@ -5,4 +5,9 @@ then
   ./setup
 fi
 
+if [ -f ./custom ]
+then
+  ./custom
+fi
+
 /usr/bin/php-fpm

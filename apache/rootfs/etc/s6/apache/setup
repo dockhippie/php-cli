@@ -65,3 +65,6 @@ fi
 
 envsubst < /etc/templates/php.ini.tmpl > /etc/php/php.ini
 envsubst < /etc/templates/httpd.conf.tmpl > /etc/apache2/httpd.conf
+
+chown -R apache:apache \
+  /app

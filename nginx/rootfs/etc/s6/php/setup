@@ -58,3 +58,6 @@ then
 fi
 
 envsubst < /etc/templates/php.ini.tmpl > /etc/php/php.ini
+
+chown -R nginx:nginx \
+  /app
