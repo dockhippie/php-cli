@@ -1,13 +1,17 @@
 # PHP Apache
 
-These are docker images for PHP Apache running on an
+[![](https://badge.imagelayers.io/webhippie/php-apache:latest.svg)](https://imagelayers.io/?images=webhippie/php-apache:latest 'Get your own badge on imagelayers.io')
+
+These are docker images for [PHP Apache](https://secure.php.net) running on an
 [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Usage
 
-```
-docker run -ti -v $(pwd)/public:/app/public -p 80:80 --name php-apache webhippie/php-apache:latest
+```bash
+docker run -ti \
+  --name php-apache \
+  webhippie/php-apache:latest
 ```
 
 
@@ -29,6 +33,13 @@ PHP interpreter you can inject configuration files into the volume
 ```/etc/php/conf.d``` when the service starts through the docker ```CMD```.
 
 
+## Versions
+
+* [latest](https://github.com/dockhippie/php/apache/tree/master)
+  available as ```webhippie/php-apache:latest``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-apache/)
+
+
 ## Available environment variables
 
 ```bash
@@ -44,6 +55,7 @@ ENV PHP_DATE_TIMEZONE UTC
 ## Inherited environment variables
 
 ```bash
+ENV LOGSTASH_ENABLED false
 ENV LOGSTASH_HOST logstash
 ENV LOGSTASH_PORT 5043
 ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
@@ -52,16 +64,6 @@ ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
 ENV LOGSTASH_TIMEOUT 15
 ENV LOGSTASH_OPTS
 ```
-
-> In order to enable the logstash functionality you have to remove the file
-> ```/etc/s6/forwarder/down```, without that the forwarder won't start.
-
-
-## Versions
-
-* [latest](https://github.com/dockhippie/php/apache/tree/master)
-  available as ```webhippie/php-apache:latest``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-apache/)
 
 
 ## Contributing
@@ -84,5 +86,4 @@ MIT
 
 ```
 Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
-Copyright (c) 2015 Christoph Wiechert <http://www.webhippie.de>
 ```

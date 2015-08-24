@@ -1,6 +1,6 @@
 # PHP
 
-This is our collection of custom PHP containers running on an
+This is our collection of custom [PHP](https://secure.php.net) containers running on an
 [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
@@ -30,5 +30,4 @@ MIT
 
 ```
 Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
-Copyright (c) 2015 Christoph Wiechert <http://www.webhippie.de>
 ```
