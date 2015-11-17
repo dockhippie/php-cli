@@ -45,4 +45,4 @@ RUN curl -sS https://getcomposer.org/installer \
   | php -- --install-dir=/usr/bin --filename=composer
 
 WORKDIR /app
-CMD ["/usr/bin/s6-svscan", "/etc/s6"]
+CMD ["/bin/s6-svscan", "/etc/s6"]

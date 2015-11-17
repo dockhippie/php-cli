@@ -2,12 +2,12 @@
 
 if [ -f ./setup ]
 then
-  ./setup
+  source ./setup
 fi
 
 if [ -f ./custom ]
 then
-  ./custom
+  source ./custom
 fi
 
 /usr/sbin/httpd -DFOREGROUND

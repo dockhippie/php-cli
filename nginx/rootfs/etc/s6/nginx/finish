@@ -1,2 +1,2 @@
 #!/bin/sh
-s6-svscanctl -t /etc/s6
+/bin/s6-svscanctl -t /etc/s6
