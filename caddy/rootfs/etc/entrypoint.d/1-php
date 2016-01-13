@@ -1,0 +1,34 @@
+#!/bin/bash
+
+declare -x PHP_MEMORY_LIMIT
+declare -x PHP_POST_MAX_SIZE
+declare -x PHP_UPLOAD_MAX_FILESIZE
+declare -x PHP_MAX_EXECUTION_TIME
+declare -x PHP_MAX_INPUT_TIME
+declare -x PHP_DATE_TIMEZONE
+
+find /etc/php/custom.d -mindepth 1 -type d -print0 | while read -d $'\0' TEMPLATE
+do
+  RELATIVENAME=${TEMPLATE//\/etc\/php\/custom.d\//}
+
+  if [ ! -d "/etc/php/conf.d/${RELATIVENAME}" ]
+  then
+    mkdir "/etc/php/conf.d/${RELATIVENAME}"
+  fi
+done
+
+find /etc/php/custom.d -mindepth 1 -type f -print0 | while read -d $'\0' TEMPLATE
+do
+  RELATIVENAME=${TEMPLATE//\/etc\/php\/custom.d\//}
+
+  ln -sf \
+    "/etc/php/conf.d/${RELATIVENAME}" \
+    "/etc/php/custom.d/${RELATIVENAME}"
+done
+
+[[ -z "${PHP_MEMORY_LIMIT}" ]] && PHP_MEMORY_LIMIT="1G"
+[[ -z "${PHP_POST_MAX_SIZE}" ]] && PHP_POST_MAX_SIZE="2G"
+[[ -z "${PHP_UPLOAD_MAX_FILESIZE}" ]] && PHP_UPLOAD_MAX_FILESIZE="2G"
+[[ -z "${PHP_MAX_EXECUTION_TIME}" ]] && PHP_MAX_EXECUTION_TIME="3600"
+[[ -z "${PHP_MAX_INPUT_TIME}" ]] && PHP_MAX_INPUT_TIME="3600"
+[[ -z "${PHP_DATE_TIMEZONE}" ]] && PHP_DATE_TIMEZONE="UTC"

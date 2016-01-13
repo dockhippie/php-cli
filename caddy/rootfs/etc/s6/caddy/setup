@@ -1,0 +1,17 @@
+#!/bin/bash
+
+checker() {
+  if [[ $1 -ne 0 ]]
+  then
+    /usr/bin/s6-svscanctl -t /etc/s6
+  fi
+}
+
+echo "Writing caddy config... "
+/usr/bin/templater -d -p php \
+  -o /etc/caddy/caddyfile \
+  /etc/templates/caddyfile.tmpl
+checker $?
+
+chown -R caddy:caddy \
+  /app

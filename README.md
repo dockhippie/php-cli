@@ -8,6 +8,7 @@ This is our collection of custom [PHP](https://secure.php.net) containers runnin
 
 * [nginx](nginx/): PHP combined with Nginx
 * [apache](apache/): PHP combined with Apache
+* [caddy](caddy/): PHP combined with Caddy
 
 
 ## Contributing
