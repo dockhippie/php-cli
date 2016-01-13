@@ -10,4 +10,5 @@ then
   source ./custom
 fi
 
+echo "Starting php-fpm!"
 /usr/bin/php-fpm

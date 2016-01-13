@@ -10,6 +10,7 @@ then
   source ./custom
 fi
 
+echo "Starting caddy!"
 /usr/bin/gosu \
   caddy \
   /usr/bin/caddy \

@@ -7,7 +7,6 @@ checker() {
   fi
 }
 
-echo "Writing caddy config... "
 /usr/bin/templater -d -p php \
   -o /etc/caddy/caddyfile \
   /etc/templates/caddyfile.tmpl

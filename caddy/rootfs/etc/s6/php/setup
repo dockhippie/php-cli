@@ -7,7 +7,6 @@ checker() {
   fi
 }
 
-echo "Writing php config... "
 /usr/bin/templater -d -p php \
   -o /etc/php/php.ini \
   /etc/templates/php.ini.tmpl
