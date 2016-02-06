@@ -1,16 +1,13 @@
 #!/bin/bash
 
-checker() {
-  if [[ $1 -ne 0 ]]
-  then
-    /bin/s6-svscanctl -t /etc/s6
-  fi
-}
-
 /usr/bin/templater -d -p php \
   -o /etc/php/php.ini \
   /etc/templates/php.ini.tmpl
-checker $?
+
+if [[ $? -ne 0 ]]
+then
+  /bin/s6-svscanctl -t /etc/s6
+fi
 
 chown -R caddy:caddy \
   /app
