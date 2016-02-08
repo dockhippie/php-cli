@@ -1,14 +1,13 @@
 <VirtualHost *:80>
-  DocumentRoot "/app/public"
+  DocumentRoot "/app"
 
   SetEnvIf Request_URI "^/favicon\.ico$" dontlog
   SetEnvIf Request_URI "^/robots\.txt$" dontlog
 
-  <Directory /app/public>
+  <Directory /app>
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
-    Order allow,deny
-    Allow from all
-    Satisfy Any
+
+    Require all granted
   </Directory>
 </VirtualHost>

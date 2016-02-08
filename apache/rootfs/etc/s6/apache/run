@@ -10,4 +10,4 @@ then
   source ./custom
 fi
 
-/usr/sbin/httpd -DFOREGROUND
+exec /usr/sbin/httpd -DFOREGROUND

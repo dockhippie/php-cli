@@ -2,10 +2,22 @@ FROM webhippie/alpine:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 RUN apk update && \
+  groupadd \
+    -g 1000 \
+    apache && \
+  useradd \
+    -u 1000 \
+    -d /app \
+    -g apache \
+    -s /bin/bash \
+    -m \
+    apache && \
   apk add \
     apache2 \
     apache2-webdav \
     apache2-utils \
+    apache2-icons \
+    apache2-error \
     php-apache2 \
     php-cli \
     php-ctype \
@@ -31,18 +43,18 @@ RUN apk update && \
     php-xml \
     php-zip \
     php-zlib && \
-  rm -rf /var/cache/apk/* && \
-  rm -rf /etc/php/* && \
-  rm -rf /etc/apache2/* && \
-  chsh -s /bin/bash apache
+  rm -rf \
+    /var/cache/apk/* \
+    /etc/php/* \
+    /etc/apache2/*
 
-VOLUME ["/etc/apache2/custom.d", "/etc/php/custom.d"]
+EXPOSE 80
+ENTRYPOINT ["/usr/bin/entrypoint"]
+CMD ["/bin/s6-svscan", "/etc/s6"]
+VOLUME ["/etc/php/custom.d"]
 
 ADD rootfs /
-EXPOSE 80
+WORKDIR /app
 
 RUN curl -sS https://getcomposer.org/installer \
   | php -- --install-dir=/usr/bin --filename=composer
-
-WORKDIR /app
-CMD ["/bin/s6-svscan", "/etc/s6"]
