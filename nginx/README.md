@@ -15,24 +15,6 @@ docker run -ti \
 ```
 
 
-# Customization
-
-This image includes some configuration presets for various applications:
-
-* `contao`: Preset to run [ContaoCMS](http://contao.org)
-* `owncloud`: Preset to run [Owncloud](http://owncloud.org)
-
-Use a preset by passing `-e CONFIG_PRESET=<name>` to docker run.
-
-In addition to that we provide different volumes to overwrite the behavior of
-Nginx or PHP. In order to customize the behavior of Nginx you can inject
-configurations into the volume ```/etc/nginx/custom.d```, this directory gets
-loaded by the server configuration directly. To customize the behavior of the
-PHP interpreter you can inject configuration files into the volume
-```/etc/php/custom.d```, this directory gets syncronized with
-```/etc/php/conf.d``` when the service starts through the docker ```CMD```.
-
-
 ## Versions
 
 * [latest](https://github.com/dockhippie/php/nginx/tree/master)
