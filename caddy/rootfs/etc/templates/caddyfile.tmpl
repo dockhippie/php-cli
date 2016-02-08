@@ -1,4 +1,7 @@
 :8080
 root /app
 
+log stdout
+errors stderr
+
 fastcgi / 127.0.0.1:9000 php
