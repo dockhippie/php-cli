@@ -1,10 +1,23 @@
 #!/bin/bash
 
-chown -R nginx:www-data \
-  /var/lib/nginx
+/usr/bin/templater -d -p php \
+  -o /etc/nginx/nginx.conf \
+  /etc/templates/nginc.conf.tmpl
 
-if [ -n "${CONFIG_PRESET}" ]
+if [[ $? -ne 0 ]]
 then
-  sed -i "s/presets\/default/presets\/${CONFIG_PRESET}/" \
-    /etc/nginx/nginx.conf
+  /bin/s6-svscanctl -t /etc/s6
 fi
+
+/usr/bin/templater -d -p php \
+  -o /etc/nginx/host.conf \
+  /etc/templates/host.conf.tmpl
+
+if [[ $? -ne 0 ]]
+then
+  /bin/s6-svscanctl -t /etc/s6
+fi
+
+chown -R nginx:nginx \
+  /app \
+  /var/lib/nginx

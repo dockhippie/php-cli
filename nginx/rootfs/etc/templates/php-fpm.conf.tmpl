@@ -1,0 +1,26 @@
+[global]
+error_log = /dev/stdout
+log_level = {{ envString "LOG_LEVEL" }}
+
+daemonize = no
+
+[www]
+user = nginx
+group = nginx
+
+listen = 127.0.0.1:9000
+listen.owner = nginx
+listen.group = nginx
+
+pm = ondemand
+pm.max_children = {{ envString "MAX_CHILDREN" }}
+pm.max_requests = {{ envString "MAX_REQUESTS" }}
+pm.process_idle_timeout = {{ envString "PROCESS_IDLE_TIMEOUT" }}
+
+chdir = /app
+
+env[HOSTNAME] = $HOSTNAME
+env[PATH] = /usr/local/bin:/usr/bin:/bin
+env[TMP] = /tmp
+env[TMPDIR] = /tmp
+env[TEMP] = /tmp

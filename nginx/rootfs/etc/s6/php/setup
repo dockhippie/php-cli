@@ -1,63 +1,22 @@
 #!/bin/bash
 
-declare -x CONFIG_PRESET
-declare -x PHP_MEMORY_LIMIT
-declare -x PHP_POST_MAX_SIZE
-declare -x PHP_UPLOAD_MAX_FILESIZE
-declare -x PHP_MAX_EXECUTION_TIME
-declare -x PHP_MAX_INPUT_TIME
-declare -x PHP_DATE_TIMEZONE
+/usr/bin/templater -d -p php \
+  -o /etc/php/php.ini \
+  /etc/templates/php.ini.tmpl
 
-find /etc/php/custom.d -mindepth 1 -type d -print0 | while read -d $'\0' TEMPLATE
-do
-  RELATIVENAME=${TEMPLATE//\/etc\/php\/custom.d\//}
-
-  if [ ! -d "/etc/php/conf.d/${RELATIVENAME}" ]
-  then
-    mkdir "/etc/php/conf.d/${RELATIVENAME}"
-  fi
-done
-
-find /etc/php/custom.d -mindepth 1 -type f -print0 | while read -d $'\0' TEMPLATE
-do
-  RELATIVENAME=${TEMPLATE//\/etc\/php\/custom.d\//}
-
-  ln -sf \
-    "/etc/php/conf.d/${RELATIVENAME}" \
-    "/etc/php/custom.d/${RELATIVENAME}"
-done
-
-if [ -z "${PHP_MEMORY_LIMIT}" ]
+if [[ $? -ne 0 ]]
 then
-  PHP_MEMORY_LIMIT=512M
+  /bin/s6-svscanctl -t /etc/s6
 fi
 
-if [ -z "${PHP_POST_MAX_SIZE}" ]
-then
-  PHP_POST_MAX_SIZE=2G
-fi
+/usr/bin/templater -d -p php \
+  -o /etc/php/php-fpm.conf \
+  /etc/templates/php-fpm.conf.tmpl
 
-if [ -z "${PHP_UPLOAD_MAX_FILESIZE}" ]
+if [[ $? -ne 0 ]]
 then
-  PHP_UPLOAD_MAX_FILESIZE=2G
+  /bin/s6-svscanctl -t /etc/s6
 fi
-
-if [ -z "${PHP_MAX_EXECUTION_TIME}" ]
-then
-  PHP_MAX_EXECUTION_TIME=3600
-fi
-
-if [ -z "${PHP_MAX_INPUT_TIME}" ]
-then
-  PHP_MAX_INPUT_TIME=3600
-fi
-
-if [ -z "${PHP_DATE_TIMEZONE}" ]
-then
-  PHP_DATE_TIMEZONE=UTC
-fi
-
-envsubst < /etc/templates/php.ini.tmpl > /etc/php/php.ini
 
 chown -R nginx:nginx \
   /app

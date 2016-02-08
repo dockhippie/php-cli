@@ -2,6 +2,16 @@ FROM webhippie/alpine:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 RUN apk update && \
+  groupadd \
+    -g 1000 \
+    nginx && \
+  useradd \
+    -u 1000 \
+    -d /app \
+    -g nginx \
+    -s /bin/bash \
+    -m \
+    nginx && \
   apk add \
     nginx \
     php-fpm \
@@ -29,18 +39,18 @@ RUN apk update && \
     php-xml \
     php-zip \
     php-zlib && \
-  rm -rf /var/cache/apk/* && \
-  rm -rf /etc/php/* && \
-  rm -rf /etc/nginx/* && \
-  chsh -s /bin/bash nginx
+  rm -rf \
+    /var/cache/apk/* \
+    /etc/php/* \
+    /etc/nginx/*
 
-VOLUME ["/etc/nginx/custom.d", "/etc/php/custom.d"]
+EXPOSE 80
+ENTRYPOINT ["/usr/bin/entrypoint"]
+CMD ["/bin/s6-svscan", "/etc/s6"]
+VOLUME ["/etc/php/custom.d"]
 
 ADD rootfs /
-EXPOSE 80
+WORKDIR /app
 
 RUN curl -sS https://getcomposer.org/installer \
   | php -- --install-dir=/usr/bin --filename=composer
-
-WORKDIR /app
-CMD ["/bin/s6-svscan", "/etc/s6"]

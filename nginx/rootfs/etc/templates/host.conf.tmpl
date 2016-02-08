@@ -20,27 +20,7 @@ location = /robots.txt {
   access_log off;
 }
 
-location ^~ /system/logs/ {
-  deny all;
-}
-
-location ^~ /templates/ {
-  deny all;
-}
-
-location ^~ /system/bin/ {
-  deny all;
-}
-
-location ^~ /system/config/ {
-  deny all;
-}
-
-location ~* \.(tpl|html5|xhtml)$ {
-  deny all;
-}
-
-location ~ /\. {
+location ~ ^/(?:\.htaccess){
   deny all;
 }
 
