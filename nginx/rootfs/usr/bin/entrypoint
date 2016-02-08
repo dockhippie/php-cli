@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -f /etc/entrypoint/php ]
+then
+  source /etc/entrypoint/php
+fi
+
+if [ -f /etc/entrypoint/server ]
+then
+  source /etc/entrypoint/server
+fi
+
+if [ -f /etc/entrypoint/app ]
+then
+  source /etc/entrypoint/app
+fi
+
+if [ -f /etc/entrypoint/misc ]
+then
+  source /etc/entrypoint/misc
+fi
+
+if [ -f /etc/entrypoint/chown ]
+then
+  source /etc/entrypoint/chown
+fi
+
+exec $@
