@@ -6,6 +6,21 @@ declare -x PHP_UPLOAD_MAX_FILESIZE
 declare -x PHP_MAX_EXECUTION_TIME
 declare -x PHP_MAX_INPUT_TIME
 declare -x PHP_DATE_TIMEZONE
+declare -x PHP_LOG_LEVEL
+declare -x PHP_MAX_CHILDREN
+declare -x PHP_MAX_REQUESTS
+declare -x PHP_PROCESS_IDLE_TIMEOUT
+
+[[ -z "${PHP_MEMORY_LIMIT}" ]] && PHP_MEMORY_LIMIT="1G"
+[[ -z "${PHP_POST_MAX_SIZE}" ]] && PHP_POST_MAX_SIZE="2G"
+[[ -z "${PHP_UPLOAD_MAX_FILESIZE}" ]] && PHP_UPLOAD_MAX_FILESIZE="2G"
+[[ -z "${PHP_MAX_EXECUTION_TIME}" ]] && PHP_MAX_EXECUTION_TIME="3600"
+[[ -z "${PHP_MAX_INPUT_TIME}" ]] && PHP_MAX_INPUT_TIME="3600"
+[[ -z "${PHP_DATE_TIMEZONE}" ]] && PHP_DATE_TIMEZONE="UTC"
+[[ -z "${PHP_LOG_LEVEL}" ]] && PHP_LOG_LEVEL="warning"
+[[ -z "${PHP_MAX_CHILDREN}" ]] && PHP_MAX_CHILDREN="75"
+[[ -z "${PHP_MAX_REQUESTS}" ]] && PHP_MAX_REQUESTS="500"
+[[ -z "${PHP_PROCESS_IDLE_TIMEOUT}" ]] && PHP_PROCESS_IDLE_TIMEOUT="10s"
 
 find /etc/php/custom.d -mindepth 1 -type d -print0 | while read -d $'\0' TEMPLATE
 do
@@ -25,10 +40,3 @@ do
     "/etc/php/conf.d/${RELATIVENAME}" \
     "/etc/php/custom.d/${RELATIVENAME}"
 done
-
-[[ -z "${PHP_MEMORY_LIMIT}" ]] && PHP_MEMORY_LIMIT="1G"
-[[ -z "${PHP_POST_MAX_SIZE}" ]] && PHP_POST_MAX_SIZE="2G"
-[[ -z "${PHP_UPLOAD_MAX_FILESIZE}" ]] && PHP_UPLOAD_MAX_FILESIZE="2G"
-[[ -z "${PHP_MAX_EXECUTION_TIME}" ]] && PHP_MAX_EXECUTION_TIME="3600"
-[[ -z "${PHP_MAX_INPUT_TIME}" ]] && PHP_MAX_INPUT_TIME="3600"
-[[ -z "${PHP_DATE_TIMEZONE}" ]] && PHP_DATE_TIMEZONE="UTC"

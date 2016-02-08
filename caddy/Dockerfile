@@ -42,7 +42,7 @@ RUN apk update && \
     /var/cache/apk/* \
     /etc/php/*
 
-EXPOSE 80
+EXPOSE 8080
 ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/bin/s6-svscan", "/etc/s6"]
 VOLUME ["/etc/php/custom.d"]

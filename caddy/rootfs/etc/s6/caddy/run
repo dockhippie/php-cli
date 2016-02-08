@@ -10,7 +10,16 @@ then
   source ./custom
 fi
 
-/usr/bin/gosu \
+STARTCMD="/usr/bin/caddy -conf=/etc/caddy/caddyfile"
+
+[[ -n "${CADDY_AGREE}" ]] && STARTCMD="${STARTCMD} -agree=${CADDY_AGREE}"
+[[ -n "${CADDY_CA}" ]] && STARTCMD="${STARTCMD} -ca=${CADDY_CA}"
+[[ -n "${CADDY_CPU}" ]] && STARTCMD="${STARTCMD} -cpu=${CADDY_CPU}"
+[[ -n "${CADDY_EMAIL}" ]] && STARTCMD="${STARTCMD} -email=${CADDY_EMAIL}"
+[[ -n "${CADDY_GRACE}" ]] && STARTCMD="${STARTCMD} -grace=${CADDY_GRACE}"
+[[ -n "${CADDY_HTTP2}" ]] && STARTCMD="${STARTCMD} -http2=${CADDY_HTTP2}"
+[[ -n "${CADDY_QUIET}" ]] && STARTCMD="${STARTCMD} -quiet=${CADDY_QUIET}"
+
+exec /usr/bin/gosu \
   caddy \
-  /usr/bin/caddy \
-  -conf=/etc/caddy/caddyfile
+  ${STARTCMD}

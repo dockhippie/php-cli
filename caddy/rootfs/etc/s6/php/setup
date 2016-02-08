@@ -9,5 +9,14 @@ then
   /bin/s6-svscanctl -t /etc/s6
 fi
 
+/usr/bin/templater -d -p php \
+  -o /etc/php/php-fpm.conf \
+  /etc/templates/php-fpm.conf.tmpl
+
+if [[ $? -ne 0 ]]
+then
+  /bin/s6-svscanctl -t /etc/s6
+fi
+
 chown -R caddy:caddy \
   /app
