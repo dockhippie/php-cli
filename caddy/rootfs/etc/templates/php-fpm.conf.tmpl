@@ -17,7 +17,7 @@ pm.max_children = {{ envString "MAX_CHILDREN" }}
 pm.max_requests = {{ envString "MAX_REQUESTS" }}
 pm.process_idle_timeout = {{ envString "PROCESS_IDLE_TIMEOUT" }}
 
-chdir = /app
+chdir = /srv/www
 
 env[HOSTNAME] = $HOSTNAME
 env[PATH] = /usr/local/bin:/usr/bin:/bin

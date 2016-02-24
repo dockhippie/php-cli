@@ -2,12 +2,14 @@ FROM webhippie/alpine:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 RUN apk update && \
+  mkdir -p \
+    /srv/www && \
   groupadd \
     -g 1000 \
     caddy && \
   useradd \
     -u 1000 \
-    -d /app \
+    -d /srv/www \
     -g caddy \
     -s /bin/bash \
     -m \
@@ -48,7 +50,7 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 VOLUME ["/etc/php/custom.d"]
 
 ADD rootfs /
-WORKDIR /app
+WORKDIR /srv/www
 
 RUN curl -sS https://getcomposer.org/installer \
   | php -- --install-dir=/usr/bin --filename=composer

@@ -19,4 +19,37 @@ then
 fi
 
 chown -R caddy:caddy \
-  /app
+  /srv/www
+
+pushd /srv/www > /dev/null
+  if [ -f composer.json ]
+  then
+    if [ -n "${GITHUB_TOKEN}" ]
+    then
+      /usr/bin/gosu \
+        caddy \
+        /usr/bin/composer \
+        config \
+        -n \
+        -g github-oauth.github.com \
+        ${GITHUB_TOKEN}
+    fi
+
+    n=0
+    until [ $n -ge 5 ]
+    do
+      /usr/bin/gosu \
+        caddy \
+        /usr/bin/composer \
+        install \
+        --no-dev \
+        --no-scripts \
+        -n \
+        -q \
+        --working-dir /srv/www && break
+
+        n=$(($n+1))
+        sleep 3
+    done
+  fi
+popd > /dev/null

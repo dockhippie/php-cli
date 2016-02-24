@@ -10,4 +10,4 @@ then
 fi
 
 chown -R caddy:caddy \
-  /app
+  /srv/www

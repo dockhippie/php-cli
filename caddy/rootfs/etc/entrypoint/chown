@@ -1,4 +1,4 @@
 #!/bin/bash
 
 chown -R caddy:caddy \
-  /app
+  /srv/www
