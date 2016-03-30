@@ -2,7 +2,7 @@
 
 /usr/bin/templater -d -p php \
   -o /etc/nginx/nginx.conf \
-  /etc/templates/nginc.conf.tmpl
+  /etc/templates/nginx.conf.tmpl
 
 if [[ $? -ne 0 ]]
 then
