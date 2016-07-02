@@ -2,24 +2,26 @@
 
 [![](https://badge.imagelayers.io/webhippie/php-nginx:latest.svg)](https://imagelayers.io/?images=webhippie/php-nginx:latest 'Get your own badge on imagelayers.io')
 
-These are docker images for [PHP Nginx](https://secure.php.net) running on an
-[Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
-
-
-## Usage
-
-```bash
-docker run -ti \
-  --name php-nginx \
-  webhippie/php-nginx:latest
-```
+These are docker images for [PHP](https://secure.php.net) running on an
+[Nginx container](https://registry.hub.docker.com/u/webhippie/nginx/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/php/nginx/tree/master)
+* [latest](https://github.com/dockhippie/php/tree/master/nginx)
   available as ```webhippie/php-nginx:latest``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-nginx/)
+
+
+## Volumes
+
+* /srv/www
+* /etc/php5/custom.d
+
+
+## Ports
+
+* 8080
 
 
 ## Available environment variables
@@ -35,14 +37,17 @@ ENV PHP_LOG_LEVEL warning
 ENV PHP_MAX_CHILDREN 75
 ENV PHP_MAX_REQUESTS 500
 ENV PHP_PROCESS_IDLE_TIMEOUT 10s
+```
+
+
+## Inherited environment variables
+
+```bash
 ENV NGINX_WORKER_PROCESSES 5
 ENV NGINX_WORKER_CONNECTIONS 4096
 ENV NGINX_SENDFILE on
 ENV NGINX_TCP_NOPUSH on
 ```
-
-
-## Inherited environment variables
 
 ```bash
 ENV LOGSTASH_ENABLED false

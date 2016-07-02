@@ -2,24 +2,26 @@
 
 [![](https://badge.imagelayers.io/webhippie/php-apache:latest.svg)](https://imagelayers.io/?images=webhippie/php-apache:latest 'Get your own badge on imagelayers.io')
 
-These are docker images for [PHP Apache](https://secure.php.net) running on an
-[Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
-
-
-## Usage
-
-```bash
-docker run -ti \
-  --name php-apache \
-  webhippie/php-apache:latest
-```
+These are docker images for [PHP](https://secure.php.net) running on an
+[Apache container](https://registry.hub.docker.com/u/webhippie/apache/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/php/apache/tree/master)
+* [latest](https://github.com/dockhippie/php/tree/master/apache)
   available as ```webhippie/php-apache:latest``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-apache/)
+
+
+## Volumes
+
+* /srv/www
+* /etc/php5/custom.d
+
+
+## Ports
+
+* 8080
 
 
 ## Available environment variables
@@ -31,11 +33,14 @@ ENV PHP_UPLOAD_MAX_FILESIZE 2G
 ENV PHP_MAX_EXECUTION_TIME 3600
 ENV PHP_MAX_INPUT_TIME 3600
 ENV PHP_DATE_TIMEZONE UTC
-ENV APACHE_HOSTNAME $HOSTNAME
 ```
 
 
 ## Inherited environment variables
+
+```bash
+ENV APACHE_HOSTNAME $HOSTNAME
+```
 
 ```bash
 ENV LOGSTASH_ENABLED false

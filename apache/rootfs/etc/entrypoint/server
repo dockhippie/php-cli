@@ -1,5 +1,0 @@
-#!/bin/bash
-
-declare -x APACHE_HOSTNAME
-
-[[ -z "${APACHE_HOSTNAME}" ]] && APACHE_HOSTNAME=${HOSTNAME}

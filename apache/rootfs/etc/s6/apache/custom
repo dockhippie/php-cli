@@ -1,0 +1,87 @@
+#!/bin/bash
+
+declare -x PHP_MEMORY_LIMIT
+declare -x PHP_POST_MAX_SIZE
+declare -x PHP_UPLOAD_MAX_FILESIZE
+declare -x PHP_MAX_EXECUTION_TIME
+declare -x PHP_MAX_INPUT_TIME
+declare -x PHP_DATE_TIMEZONE
+declare -x PHP_LOG_LEVEL
+declare -x PHP_MAX_CHILDREN
+declare -x PHP_MAX_REQUESTS
+declare -x PHP_PROCESS_IDLE_TIMEOUT
+
+[[ -z "${PHP_MEMORY_LIMIT}" ]] && PHP_MEMORY_LIMIT="1G"
+[[ -z "${PHP_POST_MAX_SIZE}" ]] && PHP_POST_MAX_SIZE="2G"
+[[ -z "${PHP_UPLOAD_MAX_FILESIZE}" ]] && PHP_UPLOAD_MAX_FILESIZE="2G"
+[[ -z "${PHP_MAX_EXECUTION_TIME}" ]] && PHP_MAX_EXECUTION_TIME="3600"
+[[ -z "${PHP_MAX_INPUT_TIME}" ]] && PHP_MAX_INPUT_TIME="3600"
+[[ -z "${PHP_DATE_TIMEZONE}" ]] && PHP_DATE_TIMEZONE="UTC"
+[[ -z "${PHP_LOG_LEVEL}" ]] && PHP_LOG_LEVEL="warning"
+[[ -z "${PHP_MAX_CHILDREN}" ]] && PHP_MAX_CHILDREN="75"
+[[ -z "${PHP_MAX_REQUESTS}" ]] && PHP_MAX_REQUESTS="500"
+[[ -z "${PHP_PROCESS_IDLE_TIMEOUT}" ]] && PHP_PROCESS_IDLE_TIMEOUT="10s"
+
+/usr/bin/templater -d -p php \
+  -o /etc/php5/php.ini \
+  /etc/templates/php.ini.tmpl
+
+if [[ $? -ne 0 ]]
+then
+  /bin/s6-svscanctl -t /etc/s6
+fi
+
+find /etc/php5/custom.d -mindepth 1 -type d -print0 | while read -d $'\0' TEMPLATE
+do
+  RELATIVENAME=${TEMPLATE//\/etc\/php5\/custom.d\//}
+
+  if [ ! -d "/etc/php5/conf.d/${RELATIVENAME}" ]
+  then
+    mkdir "/etc/php5/conf.d/${RELATIVENAME}"
+  fi
+done
+
+find /etc/php5/custom.d -mindepth 1 -type f -print0 | while read -d $'\0' TEMPLATE
+do
+  RELATIVENAME=${TEMPLATE//\/etc\/php5\/custom.d\//}
+
+  ln -sf \
+    "/etc/php5/conf.d/${RELATIVENAME}" \
+    "/etc/php5/custom.d/${RELATIVENAME}"
+done
+
+chown -R apache:apache \
+  /srv/www
+
+pushd /srv/www > /dev/null
+  if [ -f composer.json ]
+  then
+    if [ -n "${GITHUB_TOKEN}" ]
+    then
+      /usr/bin/gosu \
+        apache \
+        /usr/bin/composer \
+        config \
+        -n \
+        -g github-oauth.github.com \
+        ${GITHUB_TOKEN}
+    fi
+
+    n=0
+    until [ $n -ge 5 ]
+    do
+      /usr/bin/gosu \
+        apache \
+        /usr/bin/composer \
+        install \
+        --no-dev \
+        --no-scripts \
+        -n \
+        -q \
+        --working-dir /srv/www && break
+
+        n=$(($n+1))
+        sleep 3
+    done
+  fi
+popd > /dev/null

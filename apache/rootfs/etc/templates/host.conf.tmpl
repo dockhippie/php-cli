@@ -1,10 +1,10 @@
 <VirtualHost *:8080>
-  DocumentRoot "/app"
+  DocumentRoot "/srv/www"
 
   SetEnvIf Request_URI "^/favicon\.ico$" dontlog
   SetEnvIf Request_URI "^/robots\.txt$" dontlog
 
-  <Directory /app>
+  <Directory /srv/www>
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
 
