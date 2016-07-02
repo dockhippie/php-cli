@@ -10,7 +10,7 @@ then
   source ./custom
 fi
 
-STARTCMD="/usr/bin/caddy -conf=/etc/caddy/caddyfile"
+STARTCMD="/usr/sbin/caddy -conf=/etc/caddy/caddyfile"
 
 [[ -n "${CADDY_AGREE}" ]] && STARTCMD="${STARTCMD} -agree=${CADDY_AGREE}"
 [[ -n "${CADDY_CA}" ]] && STARTCMD="${STARTCMD} -ca=${CADDY_CA}"

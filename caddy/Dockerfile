@@ -15,31 +15,32 @@ RUN apk update && \
     -m \
     caddy && \
   apk add \
-    php-fpm \
-    php-cli \
-    php-ctype \
-    php-curl \
-    php-dom \
-    php-gd \
-    php-iconv \
-    php-intl \
-    php-json \
-    php-mcrypt \
-    php-memcache \
-    php-mysql \
-    php-mysqli \
-    php-openssl \
-    php-pdo \
-    php-pdo_mysql \
-    php-pdo_pgsql \
-    php-pdo_sqlite \
-    php-pear \
-    php-pgsql \
-    php-phar \
-    php-sqlite3 \
-    php-xml \
-    php-zip \
-    php-zlib && \
+    caddy \
+    php5-fpm \
+    php5-cli \
+    php5-ctype \
+    php5-curl \
+    php5-dom \
+    php5-gd \
+    php5-iconv \
+    php5-intl \
+    php5-json \
+    php5-mcrypt \
+    php5-memcache \
+    php5-mysql \
+    php5-mysqli \
+    php5-openssl \
+    php5-pdo \
+    php5-pdo_mysql \
+    php5-pdo_pgsql \
+    php5-pdo_sqlite \
+    php5-pear \
+    php5-pgsql \
+    php5-phar \
+    php5-sqlite3 \
+    php5-xml \
+    php5-zip \
+    php5-zlib && \
   rm -rf \
     /var/cache/apk/* \
     /etc/php/*
