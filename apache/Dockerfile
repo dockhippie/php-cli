@@ -1,8 +1,6 @@
 FROM webhippie/apache:latest
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
-VOLUME ["/srv/www"]
-
 EXPOSE 8080
 
 WORKDIR /srv/www
