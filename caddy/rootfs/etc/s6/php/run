@@ -10,4 +10,4 @@ then
   source ./custom
 fi
 
-exec /usr/bin/php-fpm
+exec /usr/bin/php-fpm7

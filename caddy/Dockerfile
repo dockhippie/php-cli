@@ -32,7 +32,8 @@ RUN apk update && \
     php7-sqlite3 \
     php7-xml \
     php7-zip \
-    php7-zlib && \
+    php7-zlib \
+    php7-mbstring && \
   ln -sf \
     /usr/bin/php7 \
     /usr/bin/php && \
