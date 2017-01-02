@@ -8,34 +8,37 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 
 RUN apk update && \
   apk add \
-    php5-apache2 \
-    php5-cli \
-    php5-ctype \
-    php5-curl \
-    php5-dom \
-    php5-gd \
-    php5-iconv \
-    php5-intl \
-    php5-json \
-    php5-mcrypt \
-    php5-memcache \
-    php5-mysql \
-    php5-mysqli \
-    php5-openssl \
-    php5-pdo \
-    php5-pdo_mysql \
-    php5-pdo_pgsql \
-    php5-pdo_sqlite \
-    php5-pear \
-    php5-pgsql \
-    php5-phar \
-    php5-sqlite3 \
-    php5-xml \
-    php5-zip \
-    php5-zlib && \
+    php7 \
+    php7-apache2 \
+    php7-ctype \
+    php7-curl \
+    php7-dom \
+    php7-gd \
+    php7-iconv \
+    php7-intl \
+    php7-json \
+    php7-mcrypt \
+    php7-memcached@testing \
+    php7-mysqli \
+    php7-mysqlnd \
+    php7-openssl \
+    php7-pdo \
+    php7-pdo_mysql \
+    php7-pdo_pgsql \
+    php7-pdo_sqlite \
+    php7-pear \
+    php7-pgsql \
+    php7-phar \
+    php7-sqlite3 \
+    php7-xml \
+    php7-zip \
+    php7-zlib && \
+  ln -sf \
+    /usr/bin/php7 \
+    /usr/bin/php && \
   rm -rf \
     /var/cache/apk/* \
-    /etc/php5/*
+    /etc/php7/*
 
 ADD rootfs /
 

@@ -16,7 +16,7 @@ These are docker images for [PHP](https://secure.php.net) running on an
 ## Volumes
 
 * /srv/www
-* /etc/php5/custom.d
+* /etc/php7/custom.d
 
 
 ## Ports
