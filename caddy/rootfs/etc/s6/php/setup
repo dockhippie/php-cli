@@ -10,6 +10,7 @@ declare -x PHP_LOG_LEVEL
 declare -x PHP_MAX_CHILDREN
 declare -x PHP_MAX_REQUESTS
 declare -x PHP_PROCESS_IDLE_TIMEOUT
+declare -x PHP_COMPOSER_INSTALL
 
 [[ -z "${PHP_MEMORY_LIMIT}" ]] && PHP_MEMORY_LIMIT="1G"
 [[ -z "${PHP_POST_MAX_SIZE}" ]] && PHP_POST_MAX_SIZE="2G"
@@ -21,6 +22,7 @@ declare -x PHP_PROCESS_IDLE_TIMEOUT
 [[ -z "${PHP_MAX_CHILDREN}" ]] && PHP_MAX_CHILDREN="75"
 [[ -z "${PHP_MAX_REQUESTS}" ]] && PHP_MAX_REQUESTS="500"
 [[ -z "${PHP_PROCESS_IDLE_TIMEOUT}" ]] && PHP_PROCESS_IDLE_TIMEOUT="10s"
+[[ -z "${PHP_COMPOSER_INSTALL}" ]] && PHP_COMPOSER_INSTALL="true"
 
 /usr/bin/templater -d -p php \
   -o /etc/php7/php.ini \
@@ -59,8 +61,7 @@ do
     "/etc/php7/custom.d/${RELATIVENAME}"
 done
 
-chown -R caddy:caddy \
-  /srv/www
+find /srv/www \( \! -user caddy -o \! -group caddy \) -print0 | xargs -0 chown caddy:caddy
 
 pushd /srv/www > /dev/null
   if [ -f composer.json ]
@@ -76,21 +77,24 @@ pushd /srv/www > /dev/null
         ${GITHUB_TOKEN}
     fi
 
-    n=0
-    until [ $n -ge 5 ]
-    do
-      /usr/bin/gosu \
-        caddy \
-        /usr/bin/composer \
-        install \
-        --no-dev \
-        --no-scripts \
-        -n \
-        -q \
-        --working-dir /srv/www && break
+    if [[ "${PHP_COMPOSER_INSTALL}" == "true" ]]
+    then
+      n=0
+      until [ $n -ge 5 ]
+      do
+        /usr/bin/gosu \
+          caddy \
+          /usr/bin/composer \
+          install \
+          --no-dev \
+          --no-scripts \
+          -n \
+          -q \
+          --working-dir /srv/www && break
 
         n=$(($n+1))
         sleep 3
-    done
+      done
+    fi
   fi
 popd > /dev/null
