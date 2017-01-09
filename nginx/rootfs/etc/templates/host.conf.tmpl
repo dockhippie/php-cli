@@ -1,6 +1,6 @@
 listen 8080;
 
-root /srv/www;
+root {{ envString "WEBROOT" }};
 index index.php index.html index.htm;
 
 disable_symlinks off;
@@ -15,9 +15,10 @@ location = /favicon.ico {
 }
 
 location = /robots.txt {
-  allow all;
   log_not_found off;
   access_log off;
+
+  allow all;
 }
 
 location ~ ^/(?:\.htaccess){

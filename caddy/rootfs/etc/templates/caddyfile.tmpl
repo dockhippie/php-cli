@@ -1,5 +1,5 @@
 :8080
-root /srv/www
+root {{ envString "WEBROOT" }}
 
 log stdout
 errors stderr

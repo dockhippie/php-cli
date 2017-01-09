@@ -1,10 +1,10 @@
 <VirtualHost *:8080>
-  DocumentRoot "/srv/www"
+  DocumentRoot "{{ envString "WEBROOT" }}"
 
   SetEnvIf Request_URI "^/favicon\.ico$" dontlog
   SetEnvIf Request_URI "^/robots\.txt$" dontlog
 
-  <Directory /srv/www>
+  <Directory {{ envString "WEBROOT" }}>
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All
 

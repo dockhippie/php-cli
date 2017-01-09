@@ -41,11 +41,11 @@ zend.enable_gc = On
 
 expose_php = On
 
-max_execution_time = ${PHP_MAX_EXECUTION_TIME}
-max_input_time = ${PHP_MAX_INPUT_TIME}
+max_execution_time = {{ envInt "MAX_EXECUTION_TIME" }}
+max_input_time = {{ envInt "MAX_INPUT_TIME" }}
 ;max_input_nesting_level = 64
 ;max_input_vars = 1000
-memory_limit = ${PHP_MEMORY_LIMIT}
+memory_limit = {{ envString "MEMORY_LIMIT" }}
 
 error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
 display_errors = On
@@ -77,7 +77,7 @@ request_order = "GP"
 register_argc_argv = Off
 auto_globals_jit = On
 ;enable_post_data_reading = Off
-post_max_size = ${PHP_POST_MAX_SIZE}
+post_max_size = {{ envString "POST_MAX_SIZE" }}
 
 auto_prepend_file =
 auto_append_file =
@@ -110,7 +110,7 @@ cgi.discard_path = 1
 
 file_uploads = On
 ;upload_tmp_dir =
-upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}
+upload_max_filesize = {{ envString "UPLOAD_MAX_SIZE" }}
 max_file_uploads = 20
 
 allow_url_fopen = On
@@ -126,7 +126,7 @@ default_socket_timeout = 60
 cli_server.color = On
 
 [Date]
-date.timezone = ${PHP_DATE_TIMEZONE}
+date.timezone = {{ envString "DATE_TIMEZONE" }}
 ;date.default_latitude = 31.7667
 ;date.default_longitude = 35.2333
 ;date.sunrise_zenith = 90.583333
