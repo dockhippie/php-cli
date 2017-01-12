@@ -1,16 +1,13 @@
 # PHP Nginx
 
-[![](https://badge.imagelayers.io/webhippie/php-nginx:latest.svg)](https://imagelayers.io/?images=webhippie/php-nginx:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/webhippie/php-nginx.svg)](https://microbadger.com/images/webhippie/php-nginx "Get your own image badge on microbadger.com")
 
-These are docker images for [PHP](https://secure.php.net) running on an
-[Nginx container](https://registry.hub.docker.com/u/webhippie/nginx/).
+These are docker images for [PHP](https://secure.php.net) running on a [Nginx container](https://registry.hub.docker.com/u/webhippie/nginx/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/php/tree/master/nginx)
-  available as ```webhippie/php-nginx:latest``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-nginx/)
+* [latest](https://github.com/dockhippie/php/tree/master/nginx) available as ```webhippie/php-nginx:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-nginx/)
 
 
 ## Volumes
@@ -52,14 +49,7 @@ ENV NGINX_WEBROOT /srv/www
 ```
 
 ```bash
-ENV LOGSTASH_ENABLED false
-ENV LOGSTASH_HOST logstash
-ENV LOGSTASH_PORT 5043
-ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
-ENV LOGSTASH_CERT /etc/ssl/logstash/certs/cert.pem # As string or filename
-ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
-ENV LOGSTASH_TIMEOUT 15
-ENV LOGSTASH_OPTS
+ENV CRON_ENABLED false
 ```
 
 
@@ -82,5 +72,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015-2016 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015-2017 Thomas Boerger <http://www.webhippie.de>
 ```

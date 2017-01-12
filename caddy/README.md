@@ -1,16 +1,13 @@
 # PHP Caddy
 
-[![](https://badge.imagelayers.io/webhippie/php-caddy:latest.svg)](https://imagelayers.io/?images=webhippie/php-caddy:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/webhippie/php-caddy.svg)](https://microbadger.com/images/webhippie/php-caddy "Get your own image badge on microbadger.com")
 
-These are docker images for [PHP](https://secure.php.net) running on an
-[Caddy container](https://registry.hub.docker.com/u/webhippie/caddy/).
+These are docker images for [PHP](https://secure.php.net) running on a [Caddy container](https://registry.hub.docker.com/u/webhippie/caddy/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/php/tree/master/caddy)
-  available as ```webhippie/php-caddy:latest``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-caddy/)
+* [latest](https://github.com/dockhippie/php/tree/master/caddy) available as ```webhippie/php-caddy:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-caddy/)
 
 
 ## Volumes
@@ -55,14 +52,7 @@ ENV CADDY_WEBROOT /srv/www
 ```
 
 ```bash
-ENV LOGSTASH_ENABLED false
-ENV LOGSTASH_HOST logstash
-ENV LOGSTASH_PORT 5043
-ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
-ENV LOGSTASH_CERT /etc/ssl/logstash/certs/cert.pem # As string or filename
-ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
-ENV LOGSTASH_TIMEOUT 15
-ENV LOGSTASH_OPTS
+ENV CRON_ENABLED false
 ```
 
 
@@ -85,5 +75,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015-2016 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015-2017 Thomas Boerger <http://www.webhippie.de>
 ```
