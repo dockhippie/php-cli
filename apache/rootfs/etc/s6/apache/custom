@@ -57,7 +57,7 @@ pushd /srv/www > /dev/null
   then
     if [ -n "${GITHUB_TOKEN}" ]
     then
-      /usr/bin/gosu \
+      su-exec \
         apache \
         /usr/bin/composer \
         config \
@@ -71,7 +71,7 @@ pushd /srv/www > /dev/null
       n=0
       until [ $n -ge 5 ]
       do
-        /usr/bin/gosu \
+        su-exec \
           apache \
           /usr/bin/composer \
           install \
