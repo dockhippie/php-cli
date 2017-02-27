@@ -10,4 +10,9 @@ then
   source ./custom
 fi
 
+for FILE in custom.d/*.sh
+do
+  source ${FILE}
+done
+
 exec /usr/sbin/php-fpm7
