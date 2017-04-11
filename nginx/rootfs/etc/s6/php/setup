@@ -1,6 +1,7 @@
 #!/bin/bash
 source /usr/local/bin/entrypoint
 
+echo "> writing php config"
 /usr/bin/templater -d -p php \
   -o /etc/php7/php.ini \
   /etc/templates/php.ini.tmpl
@@ -11,6 +12,7 @@ then
   exit 1
 fi
 
+echo "> writing fpm config"
 /usr/bin/templater -d -p php \
   -o /etc/php7/php-fpm.conf \
   /etc/templates/php-fpm.conf.tmpl
@@ -40,13 +42,14 @@ do
     "/etc/php7/custom.d/${RELATIVENAME}"
 done
 
-find /srv/www \( \! -user nginx -o \! -group nginx \) -print0 | xargs -0 chown nginx:nginx
+find /srv/www \( \! -user nginx -o \! -group nginx \) -print0 | xargs -0 -r chown nginx:nginx
 
 pushd /srv/www > /dev/null
   if [ -f composer.json ]
   then
     if [ -n "${GITHUB_TOKEN}" ]
     then
+      echo "> set github token"
       su-exec \
         nginx \
         /usr/bin/composer \
@@ -58,6 +61,7 @@ pushd /srv/www > /dev/null
 
     if [[ "${PHP_COMPOSER_INSTALL}" == "true" ]]
     then
+      echo "> install dependencies"
       n=0
       until [ $n -ge 5 ]
       do

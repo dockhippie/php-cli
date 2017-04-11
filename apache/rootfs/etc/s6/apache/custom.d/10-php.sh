@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "> writing php config"
 /usr/bin/templater -d -p php \
   -o /etc/php7/php.ini \
   /etc/templates/php.ini.tmpl
@@ -34,6 +35,7 @@ pushd /srv/www > /dev/null
   then
     if [ -n "${GITHUB_TOKEN}" ]
     then
+      echo "> set github token"
       su-exec \
         apache \
         /usr/bin/composer \
@@ -45,6 +47,7 @@ pushd /srv/www > /dev/null
 
     if [[ "${PHP_COMPOSER_INSTALL}" == "true" ]]
     then
+      echo "> install dependencies"
       n=0
       until [ $n -ge 5 ]
       do
