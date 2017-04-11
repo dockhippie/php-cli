@@ -43,6 +43,7 @@ ENV PHP_COMPOSER_INSTALL true
 ```bash
 ENV CADDY_AGREE false
 ENV CADDY_CA https://acme-v01.api.letsencrypt.org/directory
+ENV CADDY_CA_TIMEOUT 10s
 ENV CADDY_CPU 100%
 ENV CADDY_EMAIL
 ENV CADDY_GRACE 5s
