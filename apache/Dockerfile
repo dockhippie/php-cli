@@ -8,6 +8,7 @@ ENTRYPOINT ["/usr/local/bin/entrypoint"]
 CMD ["/bin/s6-svscan", "/etc/s6"]
 
 RUN apk update && \
+  apk upgrade && \
   apk add \
     php7 \
     php7-apache2 \
