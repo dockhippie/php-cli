@@ -38,6 +38,8 @@ RUN apk update && \
     php7-zlib \
     php7-mbstring \
     php7-simplexml \
+    php7-tokenizer \
+    php7-xmlwriter \
     git && \
   ln -sf \
     /usr/bin/php7 \
