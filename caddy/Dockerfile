@@ -37,6 +37,7 @@ RUN apk update && \
     php7-zip \
     php7-zlib \
     php7-mbstring \
+    php7-simplexml \
     git && \
   ln -sf \
     /usr/bin/php7 \
