@@ -20,7 +20,7 @@ RUN apk update && \
     php7-intl \
     php7-json \
     php7-mcrypt \
-    php7-memcached@testing \
+    php7-memcached \
     php7-mysqli \
     php7-mysqlnd \
     php7-openssl \
