@@ -40,6 +40,7 @@ RUN apk update && \
     php7-simplexml \
     php7-tokenizer \
     php7-xmlwriter \
+    php7-fileinfo \
     git && \
   ln -sf \
     /usr/bin/php7 \
