@@ -4,7 +4,7 @@ MAINTAINER Thomas Boerger <thomas@webhippie.de>
 EXPOSE 8080
 
 WORKDIR /srv/www
-ENTRYPOINT ["/usr/local/bin/entrypoint"]
+ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/bin/s6-svscan", "/etc/s6"]
 
 RUN apk update && \
