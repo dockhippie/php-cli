@@ -40,21 +40,8 @@ ENV PHP_COMPOSER_INSTALL true
 
 ## Inherited environment variables
 
-```bash
-ENV CADDY_AGREE false
-ENV CADDY_CA https://acme-v01.api.letsencrypt.org/directory
-ENV CADDY_CA_TIMEOUT 10s
-ENV CADDY_CPU 100%
-ENV CADDY_EMAIL
-ENV CADDY_GRACE 5s
-ENV CADDY_HTTP2 true
-ENV CADDY_QUIET false
-ENV CADDY_WEBROOT /srv/www
-```
-
-```bash
-ENV CRON_ENABLED false
-```
+* [webhippie/caddy](https://github.com/dockhippie/caddy#available-environment-variables)
+* [webhippie/alpine](https://github.com/dockhippie/alpine#available-environment-variables)
 
 
 ## Contributing

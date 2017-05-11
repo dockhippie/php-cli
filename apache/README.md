@@ -36,14 +36,8 @@ ENV PHP_COMPOSER_INSTALL true
 
 ## Inherited environment variables
 
-```bash
-ENV APACHE_HOSTNAME $HOSTNAME
-ENV APACHE_WEBROOT /srv/www
-```
-
-```bash
-ENV CRON_ENABLED false
-```
+* [webhippie/apache](https://github.com/dockhippie/apache#available-environment-variables)
+* [webhippie/alpine](https://github.com/dockhippie/alpine#available-environment-variables)
 
 
 ## Contributing

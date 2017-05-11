@@ -40,17 +40,8 @@ ENV PHP_COMPOSER_INSTALL true
 
 ## Inherited environment variables
 
-```bash
-ENV NGINX_WORKER_PROCESSES 5
-ENV NGINX_WORKER_CONNECTIONS 4096
-ENV NGINX_SENDFILE on
-ENV NGINX_TCP_NOPUSH on
-ENV NGINX_WEBROOT /srv/www
-```
-
-```bash
-ENV CRON_ENABLED false
-```
+* [webhippie/nginx](https://github.com/dockhippie/nginx#available-environment-variables)
+* [webhippie/alpine](https://github.com/dockhippie/alpine#available-environment-variables)
 
 
 ## Contributing

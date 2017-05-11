@@ -1,5 +1,5 @@
 #!/bin/bash
-source /usr/local/bin/entrypoint
+source /usr/bin/entrypoint
 
 echo "> writing php config"
 /usr/bin/templater -d -p php \
@@ -42,7 +42,7 @@ do
     "/etc/php7/custom.d/${RELATIVENAME}"
 done
 
-echo "> chown webroot"
+echo "> chown webroot files"
 find /srv/www \( \! -user caddy -o \! -group caddy \) -print0 | xargs -0 -r chown caddy:caddy
 
 pushd /srv/www > /dev/null

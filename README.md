@@ -1,11 +1,11 @@
 # PHP
 
-This is our collection of custom [PHP](https://secure.php.net) containers running on an
-[Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
+This is our collection of custom [PHP](https://secure.php.net) containers running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Containers
 
+* [cli](cli/): PHP command line interface
 * [nginx](nginx/): PHP combined with Nginx
 * [apache](apache/): PHP combined with Apache
 * [caddy](caddy/): PHP combined with Caddy

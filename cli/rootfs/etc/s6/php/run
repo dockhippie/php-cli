@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -f ./setup ]
+then
+  source ./setup
+fi
+
+if [ -f ./custom ]
+then
+  source ./custom
+fi
+
+if [ -d ./custom.d ]
+then
+  for FILE in $(find ./custom.d -type f -iname *.sh | sort)
+  do
+    source ${FILE}
+  done
+fi
+
+echo "> starting php"
+exec /usr/sbin/php-fpm7
