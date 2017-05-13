@@ -8,6 +8,8 @@ These are docker images for [PHP](https://secure.php.net) running on a [Alpine c
 ## Versions
 
 * [latest](https://github.com/dockhippie/php/tree/master/cli) available as ```webhippie/php-cli:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-cli/)
+* [7](https://github.com/dockhippie/php/tree/7/cli) available as ```webhippie/php-cli:7``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-cli/)
+* [5](https://github.com/dockhippie/php/tree/5/cli) available as ```webhippie/php-cli:5``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-cli/)
 
 
 ## Volumes

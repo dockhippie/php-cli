@@ -8,6 +8,8 @@ These are docker images for [PHP](https://secure.php.net) running on a [Caddy co
 ## Versions
 
 * [latest](https://github.com/dockhippie/php/tree/master/caddy) available as ```webhippie/php-caddy:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-caddy/)
+* [7](https://github.com/dockhippie/php/tree/7/caddy) available as ```webhippie/php-caddy:7``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-caddy/)
+* [5](https://github.com/dockhippie/php/tree/5/caddy) available as ```webhippie/php-caddy:5``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-caddy/)
 
 
 ## Volumes

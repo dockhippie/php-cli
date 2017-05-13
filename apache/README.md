@@ -8,6 +8,8 @@ These are docker images for [PHP](https://secure.php.net) running on an [Apache 
 ## Versions
 
 * [latest](https://github.com/dockhippie/php/tree/master/apache) available as ```webhippie/php-apache:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-apache/)
+* [7](https://github.com/dockhippie/php/tree/7/apache) available as ```webhippie/php-apache:7``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-apache/)
+* [5](https://github.com/dockhippie/php/tree/5/apache) available as ```webhippie/php-apache:5``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-apache/)
 
 
 ## Volumes

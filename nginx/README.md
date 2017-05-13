@@ -8,6 +8,8 @@ These are docker images for [PHP](https://secure.php.net) running on a [Nginx co
 ## Versions
 
 * [latest](https://github.com/dockhippie/php/tree/master/nginx) available as ```webhippie/php-nginx:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-nginx/)
+* [7](https://github.com/dockhippie/php/tree/7/nginx) available as ```webhippie/php-nginx:7``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-nginx/)
+* [5](https://github.com/dockhippie/php/tree/5/nginx) available as ```webhippie/php-nginx:5``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/php-nginx/)
 
 
 ## Volumes
