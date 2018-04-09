@@ -19,7 +19,6 @@ RUN apk update && \
     php7-iconv \
     php7-intl \
     php7-json \
-    php7-mcrypt \
     php7-memcached \
     php7-mysqli \
     php7-mysqlnd \
