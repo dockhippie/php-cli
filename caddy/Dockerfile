@@ -40,6 +40,8 @@ RUN apk update && \
     php7-xmlwriter \
     php7-fileinfo \
     php7-soap \
+    php7-apcu \
+    php7-redis \
     git && \
   ln -sf \
     /usr/bin/php7 \
