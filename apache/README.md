@@ -27,6 +27,7 @@ These are docker images for [PHP](https://secure.php.net) running on an [Apache 
 
 ```bash
 ENV PHP_MEMORY_LIMIT 512M
+ENV PHP_ERROR_LOG /proc/self/fd/2
 ENV PHP_ERROR_REPORTING E_ALL & ~E_DEPRECATED & ~E_STRICT
 ENV PHP_DISPLAY_ERRORS On
 ENV PHP_DISPLAY_STARTUP_ERRORS On
