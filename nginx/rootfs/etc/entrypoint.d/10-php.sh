@@ -15,6 +15,9 @@ declare -x PHP_DISPLAY_ERRORS
 declare -x PHP_DISPLAY_STARTUP_ERRORS
 [[ -z "${PHP_DISPLAY_STARTUP_ERRORS}" ]] && PHP_DISPLAY_STARTUP_ERRORS="On"
 
+declare -x PHP_ERROR_LOG
+[[ -z "${PHP_ERROR_LOG}" ]] && PHP_ERROR_LOG="/proc/self/fd/2"
+
 declare -x PHP_LOG_ERRORS
 [[ -z "${PHP_LOG_ERRORS}" ]] && PHP_LOG_ERRORS="On"
 
