@@ -1,0 +1,19 @@
+image: webhippie/php-cli:latest
+manifests:
+  -
+    image: webhippie/php-cli:latest-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: webhippie/php-cli:latest-arm64v8
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
+  -
+    image: webhippie/php-cli:latest-arm32v6
+    platform:
+      architecture: arm
+      os: linux
+      variant: v6
