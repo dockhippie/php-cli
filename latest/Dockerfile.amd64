@@ -1,0 +1,25 @@
+FROM webhippie/alpine:latest
+
+LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
+  org.label-schema.name="PHP CLI" \
+  org.label-schema.vcs-url="https://github.com/dockhippie/golang.git" \
+  org.label-schema.vendor="Thomas Boerger" \
+  org.label-schema.schema-version="1.0"
+
+EXPOSE 9000
+
+WORKDIR /srv/www
+ENTRYPOINT ["/usr/bin/entrypoint"]
+CMD ["/bin/s6-svscan", "/etc/s6"]
+
+RUN apk update && \
+  apk upgrade && \
+  apk add php7 php7-fpm php7-ctype php7-curl php7-dom php7-gd php7-iconv php7-intl php7-json php7-memcached php7-mysqli php7-mysqlnd php7-openssl php7-opcache php7-pdo php7-pdo_mysql php7-pdo_pgsql php7-pdo_sqlite php7-pear php7-pgsql php7-phar php7-sqlite3 php7-xml php7-zip php7-mbstring php7-simplexml php7-tokenizer php7-xmlwriter php7-fileinfo php7-soap php7-apcu php7-redis git && \
+  ln -sf /usr/bin/php7 /usr/bin/php && \
+  groupadd -g 1000 php && \
+  useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
+  rm -rf /var/cache/apk/* /etc/php7/*
+
+COPY ./overlay ./overlay-amd64 /
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
