@@ -1,4 +1,4 @@
-FROM webhippie/alpine:latest-arm64v8
+FROM webhippie/alpine:latest-arm64v8@sha256:d2efbdbac9a0dfac0588e59b7701f2e2ebd8ab76ee6fd3abd92d70edfa6caf4a
 
 LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
   org.label-schema.name="PHP CLI" \
