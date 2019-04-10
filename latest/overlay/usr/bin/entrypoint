@@ -34,7 +34,7 @@ do
     "/etc/php7/custom.d/${RELATIVENAME}"
 done
 
-if [[ $# -gt 0 ]]; then
+if [[ "${0}" == "/usr/bin/entrypoint" ]]; then
   pushd ${PHP_WEBROOT} > /dev/null
     exec $@
   popd > /dev/null
