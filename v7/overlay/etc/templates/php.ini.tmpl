@@ -43,7 +43,6 @@ zend.enable_gc = On
 ;zend.multibyte = Off
 ;zend.script_encoding =
 zend.exception_ignore_args = On
-zend.exception_string_param_max_len = 0
 
 expose_php = {{ getenv "PHP_EXPOSE_HEADER" }}
 
@@ -93,12 +92,12 @@ default_charset = "UTF-8"
 ;input_encoding =
 ;output_encoding =
 
-;include_path = ".:/php8/includes"
+;include_path = ".:/php7/includes"
 
 doc_root =
 user_dir =
 
-extension_dir = "/usr/lib/php8/modules"
+extension_dir = "/usr/lib/php7/modules"
 ;sys_temp_dir = "/tmp"
 enable_dl = {{ getenv "PHP_ENABLE_DL" }}
 
@@ -162,6 +161,7 @@ date.timezone = {{ getenv "PHP_DATE_TIMEZONE" }}
 
 [Pdo]
 ;pdo_odbc.connection_pooling = strict
+;pdo_odbc.db2_instance_name
 
 [Pdo_mysql]
 pdo_mysql.default_socket =
@@ -177,11 +177,9 @@ smtp_port = 25
 ;sendmail_path =
 
 ;mail.force_extra_parameters =
-mail.add_x_header = On
+mail.add_x_header = Off
 ;mail.log =
 ;mail.log = syslog
-;mail.force_extra_parameters =
-mail.add_x_header = Off
 
 [ODBC]
 ;odbc.default_db = Not yet implemented
@@ -241,7 +239,7 @@ pgsql.log_notice = 0
 bcmath.scale = 0
 
 [browscap]
-browscap = /etc/php8/browscap.ini
+browscap = /etc/php7/browscap.ini
 
 [Session]
 session.save_handler = files
@@ -262,6 +260,8 @@ session.gc_probability = 1
 session.gc_divisor = 1000
 session.gc_maxlifetime = 1440
 session.referer_check =
+;session.entropy_length = 32
+;session.entropy_file = /dev/urandom
 session.cache_limiter = nocache
 session.cache_expire = 180
 session.use_trans_sid = 0
@@ -284,6 +284,7 @@ zend.assertions = -1
 ;assert.warning = On
 ;assert.bail = Off
 ;assert.callback = 0
+;assert.quiet_eval = 0
 
 [COM]
 ;com.typelib_file =
@@ -292,7 +293,6 @@ zend.assertions = -1
 ;com.autoregister_casesensitive = false
 ;com.autoregister_verbose = true
 ;com.code_page=
-;com.dotnet_version=
 
 [mbstring]
 ;mbstring.language = Japanese
@@ -309,7 +309,7 @@ zend.assertions = -1
 ;mbstring.regex_retry_limit = 1000000
 
 [gd]
-;gd.jpeg_ignore_warning = 0
+;gd.jpeg_ignore_warning = 1
 
 [exif]
 ;exif.encode_unicode = ISO-8859-15
@@ -335,10 +335,6 @@ soap.wsdl_cache_limit = 5
 [ldap]
 ldap.max_links = -1
 
-[mcrypt]
-;mcrypt.algorithms_dir =
-;mcrypt.modes_dir =
-
 [dba]
 ;dba.default_handler =
 
@@ -354,7 +350,6 @@ ldap.max_links = -1
 ;opcache.revalidate_freq = 2
 ;opcache.revalidate_path = 0
 ;opcache.save_comments = 1
-;opcache.record_warnings = 0
 ;opcache.enable_file_override = 0
 ;opcache.optimization_level = 0xffffffff
 ;opcache.dups_fix = 0
