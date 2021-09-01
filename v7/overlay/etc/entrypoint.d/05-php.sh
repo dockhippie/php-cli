@@ -36,9 +36,6 @@ declare -x PHP_DISPLAY_STARTUP_ERRORS
 declare -x PHP_ERROR_LOG
 [[ -z "${PHP_ERROR_LOG}" ]] && PHP_ERROR_LOG="/proc/self/fd/2"
 
-declare -x PHP_ACCESS_LOG
-[[ -z "${PHP_ACCESS_LOG}" ]] && PHP_ACCESS_LOG="/proc/self/fd/2"
-
 declare -x PHP_LOG_ERRORS
 [[ -z "${PHP_LOG_ERRORS}" ]] && PHP_LOG_ERRORS="On"
 

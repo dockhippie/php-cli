@@ -13,8 +13,6 @@ listen.owner = php
 listen.group = php
 listen.mode = {{ getenv "PHP_LISTEN_MODE" }}
 
-access.log = {{ getenv "PHP_ACCESS_LOG" }}
-
 pm = ondemand
 pm.max_children = {{ getenv "PHP_MAX_CHILDREN" }}
 pm.max_requests = {{ getenv "PHP_MAX_REQUESTS" }}
