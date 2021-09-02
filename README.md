@@ -16,7 +16,6 @@ For the available versions please look at [Docker Hub](https://hub.docker.com/r/
 ## Ports
 
 * 9000
-* 9001
 
 ## Available environment variables
 
@@ -53,6 +52,8 @@ PHP_PROCESS_IDLE_TIMEOUT = 10s
 PHP_REPORT_MEMLEAKS = On
 PHP_SKIP_CHOWN = false
 PHP_SKIP_TEMPLATES = false
+PHP_STATUS_LISTEN = 0.0.0.0:9001
+PHP_STATUS_PATH = /status
 PHP_TRACK_ERRORS = Off
 PHP_UPLOAD_MAX_FILESIZE = 2G
 PHP_WEBROOT = /srv/www

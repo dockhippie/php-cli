@@ -12,6 +12,12 @@ declare -x PHP_PING_PATH
 declare -x PHP_PING_RESPONSE
 [[ -z "${PHP_PING_RESPONSE}" ]] && PHP_PING_RESPONSE="pong"
 
+declare -x PHP_STATUS_PATH
+[[ -z "${PHP_STATUS_PATH}" ]] && PHP_STATUS_PATH="/status"
+
+declare -x PHP_STATUS_LISTEN
+[[ -z "${PHP_STATUS_LISTEN}" ]] && PHP_STATUS_LISTEN="0.0.0.0:9001"
+
 declare -x PHP_OUTPUT_BUFFERING
 [[ -z "${PHP_OUTPUT_BUFFERING}" ]] && PHP_OUTPUT_BUFFERING="4096"
 

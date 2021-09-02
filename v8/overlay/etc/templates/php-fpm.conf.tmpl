@@ -17,12 +17,16 @@ pm = ondemand
 pm.max_children = {{ getenv "PHP_MAX_CHILDREN" }}
 pm.max_requests = {{ getenv "PHP_MAX_REQUESTS" }}
 pm.process_idle_timeout = {{ getenv "PHP_PROCESS_IDLE_TIMEOUT" }}
+{{ if ne (getenv "PHP_STATUS_PATH") "" }}
 
-pm.status_path = /status
-pm.status_listen = 0.0.0.0:9001
+pm.status_path = {{ getenv "PHP_STATUS_PATH" }}
+pm.status_listen = {{ getenv "PHP_STATUS_LISTEN" }}
+{{ end }}
+{{ if ne (getenv "PHP_PING_PATH") "" }}
 
 ping.path = {{ getenv "PHP_PING_PATH" }}
 ping.response = {{ getenv "PHP_PING_RESPONSE" }}
+{{ end }}
 
 chdir = {{ getenv "PHP_WEBROOT" }}
 
