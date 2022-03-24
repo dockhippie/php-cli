@@ -1,4 +1,4 @@
-FROM webhippie/alpine:latest-arm64@sha256:71f510bf5114a05d6830f25a5b0bc224b37d3a73e08f636d76b7d14ed2ef56e4
+FROM webhippie/alpine:latest-arm64@sha256:ebef7a158286577a726c8a7169be33bca3d8c710024a53c09c0bb83f983fa59f
 
 VOLUME ["/etc/php8/custom.d"]
 EXPOSE 9000
