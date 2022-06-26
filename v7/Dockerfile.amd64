@@ -17,4 +17,4 @@ RUN apk update && \
 COPY ./overlay /
 
 RUN curl -sSLo - https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-  curl -sSLo /etc/php7/browsercap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
+  curl -sSLo /etc/php7/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
