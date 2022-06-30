@@ -1,21 +1,24 @@
 # php-cli
 
-[![Docker Build](https://github.com/dockhippie/php-cli/workflows/docker/badge.svg)](https://github.com/dockhippie/php-cli/actions?query=workflow%3Adocker) [![Readme Build](https://github.com/dockhippie/php-cli/workflows/readme/badge.svg)](https://github.com/dockhippie/php-cli/actions?query=workflow%3Areadme) [![Docker Size](https://img.shields.io/docker/image-size/webhippie/php-cli/latest)](#) [![Docker Pulls](https://img.shields.io/docker/pulls/webhippie/php-cli)](https://hub.docker.com/r/webhippie/php-cli) [![GitHub Repo](https://img.shields.io/badge/github-repo-yellowgreen)](https://github.com/dockhippie/php-cli)
+[![Docker Build](https://github.com/dockhippie/php-cli/actions/workflows/docker.yml/badge.svg)](https://github.com/dockhippie/php-cli/actions/workflows/docker.yml) [![GitHub Repo](https://img.shields.io/badge/github-repo-yellowgreen)](https://github.com/dockhippie/php-cli)
 
-These are docker images for [PHP](https://secure.php.net) running on our [Alpine Linux image](https://github.com/dockhippie/alpine).
+These are docker images for [PHP][upstream] running on our
+[Alpine Linux image][parent].
 
 ## Versions
 
-For the available versions please look at [Docker Hub](https://hub.docker.com/r/webhippie/php-cli/tags) or [Quay](https://quay.io/repository/webhippie/php-cli?tab=tags) or check the existing folders within the [GitHub repository](https://github.com/dockhippie/php-cli).
+For the available versions please look at [Docker Hub][dockerhub] or
+[Quay][quayio] or check the existing folders within the
+[GitHub repository][github].
 
 ## Volumes
 
-* /srv/www
-* /etc/php8/custom.d
+*  /srv/www
+*  /etc/php8/custom.d
 
 ## Ports
 
-* 9000
+*  9000
 
 ## Available environment variables
 
@@ -80,3 +83,9 @@ MIT
 ```console
 Copyright (c) 2015 Thomas Boerger <http://www.webhippie.de>
 ```
+
+[upstream]: https://secure.php.net
+[parent]: https://github.com/dockhippie/alpine
+[dockerhub]: https://hub.docker.com/r/webhippie/php-cli/tags
+[quayio]: https://quay.io/repository/webhippie/php-cli?tab=tags
+[github]: https://github.com/dockhippie/php-cli
