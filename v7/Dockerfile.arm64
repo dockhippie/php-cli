@@ -8,7 +8,7 @@ CMD ["/usr/bin/container"]
 
 RUN apk update && \
   apk upgrade && \
-  apk add php7@testing php7-phpdbg@testing php7-fpm@testing php7-ctype@testing php7-curl@testing php7-dom@testing php7-gd@testing php7-iconv@testing php7-intl@testing php7-json@testing php7-mysqli@testing php7-mysqlnd@testing php7-openssl@testing php7-opcache@testing php7-pdo@testing php7-pdo_mysql@testing php7-pdo_pgsql@testing php7-pdo_sqlite@testing php7-pear@testing php7-pgsql@testing php7-phar@testing php7-sqlite3@testing php7-xml@testing php7-zip@testing php7-mbstring@testing php7-simplexml@testing php7-tokenizer@testing php7-xmlwriter@testing php7-fileinfo@testing php7-soap@testing php7-pecl-apcu@testing php7-pecl-redis@testing php7-pecl-memcached@testing git && \
+  apk add php7@testing php7-phpdbg@testing php7-fpm@testing php7-ctype@testing php7-dom@testing php7-gd@testing php7-iconv@testing php7-intl@testing php7-json@testing php7-mysqli@testing php7-mysqlnd@testing php7-openssl@testing php7-opcache@testing php7-pdo@testing php7-pdo_mysql@testing php7-pdo_pgsql@testing php7-pdo_sqlite@testing php7-pear@testing php7-pgsql@testing php7-phar@testing php7-sqlite3@testing php7-xml@testing php7-zip@testing php7-mbstring@testing php7-simplexml@testing php7-tokenizer@testing php7-xmlwriter@testing php7-fileinfo@testing php7-soap@testing php7-pecl-apcu@testing php7-pecl-redis@testing php7-pecl-memcached@testing git && \
   ln -sf /usr/bin/php7 /usr/bin/php && \
   groupadd -g 1000 php && \
   useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
