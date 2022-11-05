@@ -8,7 +8,7 @@ CMD ["/usr/bin/container"]
 
 RUN apk update && \
   apk upgrade && \
-  apk add php8 php8-phpdbg php8-fpm php8-ctype php8-curl php8-dom php8-gd php8-iconv php8-intl php8-json php8-mysqli php8-mysqlnd php8-openssl php8-opcache php8-pdo php8-pdo_mysql php8-pdo_pgsql php8-pdo_sqlite php8-pear php8-pgsql php8-phar php8-sqlite3 php8-xml php8-zip php8-mbstring php8-simplexml php8-tokenizer php8-xmlwriter php8-fileinfo php8-soap php8-apcu php8-pecl-redis php8-pecl-memcached git && \
+  apk add php8@testing php8-phpdbg@testing php8-fpm@testing php8-ctype@testing php8-curl@testing php8-dom@testing php8-gd@testing php8-iconv@testing php8-intl@testing php8-json@testing php8-mysqli@testing php8-mysqlnd@testing php8-openssl@testing php8-opcache@testing php8-pdo@testing php8-pdo_mysql@testing php8-pdo_pgsql@testing php8-pdo_sqlite@testing php8-pear@testing php8-pgsql@testing php8-phar@testing php8-sqlite3@testing php8-xml@testing php8-zip@testing php8-mbstring@testing php8-simplexml@testing php8-tokenizer@testing php8-xmlwriter@testing php8-fileinfo@testing php8-soap@testing php8-apcu@testing php8-pecl-redis@testing php8-pecl-memcached@testing git && \
   ln -sf /usr/bin/php8 /usr/bin/php && \
   groupadd -g 1000 php && \
   useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
