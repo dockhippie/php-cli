@@ -1,20 +1,20 @@
 FROM ghcr.io/dockhippie/alpine:latest-amd64@sha256:581954ebc2b0530e6938240435409e37670b537135e680ec9d14d989bbb21128
 
-VOLUME ["/etc/php8/custom.d"]
-EXPOSE 9000
-
 WORKDIR /srv/www
 CMD ["/usr/bin/container"]
 
 RUN apk update && \
   apk upgrade && \
-  apk add php8@testing php8-phpdbg@testing php8-fpm@testing php8-ctype@testing php8-curl@testing php8-dom@testing php8-gd@testing php8-iconv@testing php8-intl@testing php8-json@testing php8-mysqli@testing php8-mysqlnd@testing php8-openssl@testing php8-opcache@testing php8-pdo@testing php8-pdo_mysql@testing php8-pdo_pgsql@testing php8-pdo_sqlite@testing php8-pear@testing php8-pgsql@testing php8-phar@testing php8-sqlite3@testing php8-xml@testing php8-zip@testing php8-mbstring@testing php8-simplexml@testing php8-tokenizer@testing php8-xmlwriter@testing php8-fileinfo@testing php8-soap@testing php8-apcu@testing php8-pecl-redis@testing php8-pecl-memcached@testing git && \
-  ln -sf /usr/bin/php8 /usr/bin/php && \
+  apk add php82 php82-phpdbg php82-fpm php82-ctype php82-curl php82-dom php82-gd php82-iconv php82-intl php82-mysqli php82-mysqlnd php82-openssl php82-opcache php82-pdo php82-pdo_mysql php82-pdo_pgsql php82-pdo_sqlite php82-pear php82-pgsql php82-phar php82-sqlite3 php82-xml php82-zip php82-mbstring php82-simplexml php82-tokenizer php82-xmlwriter php82-fileinfo php82-soap php82-pecl-apcu php82-pecl-redis php82-pecl-memcached git && \
+  ln -sf /usr/bin/php82 /usr/bin/php && \
   groupadd -g 1000 php && \
   useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
-  rm -rf /var/cache/apk/* /etc/php8/*
+  rm -rf /var/cache/apk/* /etc/php82/*
+
+VOLUME ["/etc/php82/custom.d"]
+EXPOSE 9000
 
 COPY ./overlay /
 
 RUN curl -sSLo - https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-  curl -sSLo /etc/php8/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
+  curl -sSLo /etc/php82/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
