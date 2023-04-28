@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eo pipefail
+source /usr/bin/entrypoint
+
+for FILE in $(find /etc/container.d -type f -iname \*.sh | sort); do
+    source ${FILE}
+done
+
+pushd ${PHP_WEBROOT} >/dev/null
+    echo "> starting php service"
+    exec php-fpm8
+popd >/dev/null

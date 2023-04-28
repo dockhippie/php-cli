@@ -1,0 +1,20 @@
+FROM ghcr.io/dockhippie/alpine:latest-arm@sha256:99ec4c02eb520d5cabdcba4bf7dab807b3a2c3392a25fd86c0818565fa3623a7
+
+WORKDIR /srv/www
+CMD ["/usr/bin/container"]
+
+RUN apk update && \
+  apk upgrade && \
+  apk add php8@testing php8-phpdbg@testing php8-fpm@testing php8-ctype@testing php8-curl@testing php8-dom@testing php8-gd@testing php8-iconv@testing php8-intl@testing php8-mysqli@testing php8-mysqlnd@testing php8-openssl@testing php8-opcache@testing php8-pdo@testing php8-pdo_mysql@testing php8-pdo_pgsql@testing php8-pdo_sqlite@testing php8-pear@testing php8-pgsql@testing php8-phar@testing php8-sqlite3@testing php8-xml@testing php8-zip@testing php8-mbstring@testing php8-simplexml@testing php8-tokenizer@testing php8-xmlwriter@testing php8-fileinfo@testing php8-soap@testing php8-pecl-apcu@testing php8-pecl-redis@testing php8-pecl-memcached@testing git && \
+  ln -sf /usr/bin/php8 /usr/bin/php && \
+  groupadd -g 1000 php && \
+  useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
+  rm -rf /var/cache/apk/* /etc/php8/*
+
+VOLUME ["/etc/php8/custom.d"]
+EXPOSE 9000
+
+COPY ./overlay /
+
+RUN curl -sSLo - https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
+  curl -sSLo /etc/php8/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
