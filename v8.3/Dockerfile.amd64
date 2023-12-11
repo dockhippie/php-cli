@@ -1,0 +1,20 @@
+FROM ghcr.io/dockhippie/alpine:latest-amd64@sha256:950f94fa302e234f471fc42d49c498f57ed1dc86b31b6c8df2bd2ebd643ef00d
+
+WORKDIR /srv/www
+CMD ["/usr/bin/container"]
+
+RUN apk update && \
+  apk upgrade && \
+  apk add php83 php83-phpdbg php83-fpm php83-ctype php83-curl php83-dom php83-gd php83-iconv php83-intl php83-mysqli php83-mysqlnd php83-openssl php83-opcache php83-pdo php83-pdo_mysql php83-pdo_pgsql php83-pdo_sqlite php83-pear php83-pgsql php83-phar php83-sqlite3 php83-xml php83-zip php83-mbstring php83-simplexml php83-tokenizer php83-xmlwriter php83-fileinfo php83-soap php83-pecl-apcu php83-pecl-redis php83-pecl-memcached git && \
+  ln -sf /usr/bin/php83 /usr/bin/php && \
+  groupadd -g 1000 php && \
+  useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
+  rm -rf /var/cache/apk/* /etc/php83/*
+
+VOLUME ["/etc/php83/custom.d"]
+EXPOSE 9000
+
+COPY ./overlay /
+
+RUN curl -sSLo - https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
+  curl -sSLo /etc/php83/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
