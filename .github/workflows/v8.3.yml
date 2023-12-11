@@ -1,19 +1,19 @@
 ---
-name: v8.2
+name: v8.3
 
 "on":
   push:
     branches:
       - master
     paths:
-      - v8.2/*
-      - .github/workflows/v8.2.yml
+      - v8.3/*
+      - .github/workflows/v8.3.yml
   pull_request:
     branches:
       - master
     paths:
-      - v8.2/*
-      - .github/workflows/v8.2.yml
+      - v8.3/*
+      - .github/workflows/v8.3.yml
   workflow_dispatch:
 
 jobs:
@@ -77,48 +77,48 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: v8.2/
+          context: v8.3/
           provenance: false
-          file: v8.2/Dockerfile.amd64
+          file: v8.3/Dockerfile.amd64
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            webhippie/php-cli:8.2-amd64
-            quay.io/webhippie/php-cli:8.2-amd64
-            ghcr.io/dockhippie/php-cli:8.2-amd64
+            webhippie/php-cli:8.3-amd64
+            quay.io/webhippie/php-cli:8.3-amd64
+            ghcr.io/dockhippie/php-cli:8.3-amd64
 
       - name: Build arm64
         id: arm64
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: v8.2/
+          context: v8.3/
           provenance: false
-          file: v8.2/Dockerfile.arm64
+          file: v8.3/Dockerfile.arm64
           platforms: linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            webhippie/php-cli:8.2-arm64
-            quay.io/webhippie/php-cli:8.2-arm64
-            ghcr.io/dockhippie/php-cli:8.2-arm64
+            webhippie/php-cli:8.3-arm64
+            quay.io/webhippie/php-cli:8.3-arm64
+            ghcr.io/dockhippie/php-cli:8.3-arm64
 
       - name: Build arm
         id: arm
         uses: docker/build-push-action@v5
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: v8.2/
+          context: v8.3/
           provenance: false
-          file: v8.2/Dockerfile.arm
+          file: v8.3/Dockerfile.arm
           platforms: linux/arm/v6
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            webhippie/php-cli:8.2-arm
-            quay.io/webhippie/php-cli:8.2-arm
-            ghcr.io/dockhippie/php-cli:8.2-arm
+            webhippie/php-cli:8.3-arm
+            quay.io/webhippie/php-cli:8.3-arm
+            ghcr.io/dockhippie/php-cli:8.3-arm
 
       - name: Hub manifest
         id: manifest1
@@ -128,8 +128,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           platforms: linux/amd64,linux/arm64,linux/arm/v6
-          template: webhippie/php-cli:8.2-ARCH
-          target: webhippie/php-cli:8.2
+          template: webhippie/php-cli:8.3-ARCH
+          target: webhippie/php-cli:8.3
           ignore_missing: true
 
       - name: Quay manifest
@@ -140,8 +140,8 @@ jobs:
           username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.QUAY_PASSWORD }}
           platforms: linux/amd64,linux/arm64,linux/arm/v6
-          template: quay.io/webhippie/php-cli:8.2-ARCH
-          target: quay.io/webhippie/php-cli:8.2
+          template: quay.io/webhippie/php-cli:8.3-ARCH
+          target: quay.io/webhippie/php-cli:8.3
           ignore_missing: true
 
       - name: Ghcr manifest
@@ -152,8 +152,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           platforms: linux/amd64,linux/arm64,linux/arm/v6
-          template: ghcr.io/dockhippie/php-cli:8.2-ARCH
-          target: ghcr.io/dockhippie/php-cli:8.2
+          template: ghcr.io/dockhippie/php-cli:8.3-ARCH
+          target: ghcr.io/dockhippie/php-cli:8.3
           ignore_missing: true
 
 ...
