@@ -3,18 +3,20 @@ FROM ghcr.io/dockhippie/alpine:latest-arm@sha256:91cb9847983df817454ebde7ae6ed2e
 WORKDIR /srv/www
 CMD ["/usr/bin/container"]
 
+ENV PHP_PACKAGE_VERSION=82
+
 RUN apk update && \
   apk upgrade && \
-  apk add php82 php82-phpdbg php82-fpm php82-ctype php82-curl php82-dom php82-gd php82-iconv php82-intl php82-mysqli php82-mysqlnd php82-openssl php82-opcache php82-pdo php82-pdo_mysql php82-pdo_pgsql php82-pdo_sqlite php82-pear php82-pgsql php82-phar php82-sqlite3 php82-xml php82-zip php82-mbstring php82-simplexml php82-tokenizer php82-xmlwriter php82-fileinfo php82-soap php82-pecl-apcu php82-pecl-redis php82-pecl-memcached git && \
-  ln -sf /usr/bin/php82 /usr/bin/php && \
+  apk add php${PHP_PACKAGE_VERSION} php${PHP_PACKAGE_VERSION}-phpdbg php${PHP_PACKAGE_VERSION}-fpm php${PHP_PACKAGE_VERSION}-ctype php${PHP_PACKAGE_VERSION}-curl php${PHP_PACKAGE_VERSION}-dom php${PHP_PACKAGE_VERSION}-gd php${PHP_PACKAGE_VERSION}-iconv php${PHP_PACKAGE_VERSION}-intl php${PHP_PACKAGE_VERSION}-mysqli php${PHP_PACKAGE_VERSION}-mysqlnd php${PHP_PACKAGE_VERSION}-openssl php${PHP_PACKAGE_VERSION}-opcache php${PHP_PACKAGE_VERSION}-pdo php${PHP_PACKAGE_VERSION}-pdo_mysql php${PHP_PACKAGE_VERSION}-pdo_pgsql php${PHP_PACKAGE_VERSION}-pdo_sqlite php${PHP_PACKAGE_VERSION}-pear php${PHP_PACKAGE_VERSION}-pgsql php${PHP_PACKAGE_VERSION}-phar php${PHP_PACKAGE_VERSION}-sqlite3 php${PHP_PACKAGE_VERSION}-xml php${PHP_PACKAGE_VERSION}-zip php${PHP_PACKAGE_VERSION}-mbstring php${PHP_PACKAGE_VERSION}-simplexml php${PHP_PACKAGE_VERSION}-tokenizer php${PHP_PACKAGE_VERSION}-xmlwriter php${PHP_PACKAGE_VERSION}-fileinfo php${PHP_PACKAGE_VERSION}-soap php${PHP_PACKAGE_VERSION}-pecl-apcu php${PHP_PACKAGE_VERSION}-pecl-redis php${PHP_PACKAGE_VERSION}-pecl-memcached git && \
+  ln -sf /usr/bin/php${PHP_PACKAGE_VERSION} /usr/bin/php && \
   groupadd -g 1000 php && \
   useradd -u 1000 -d /srv/www -g php -s /bin/bash -M php && \
-  rm -rf /var/cache/apk/* /etc/php82/*
+  rm -rf /var/cache/apk/* /etc/php${PHP_PACKAGE_VERSION}/*
 
-VOLUME ["/etc/php82/custom.d"]
+VOLUME ["/etc/php${PHP_PACKAGE_VERSION}/custom.d"]
 EXPOSE 9000
 
 COPY ./overlay /
 
 RUN curl -sSLo - https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
-  curl -sSLo /etc/php82/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
+  curl -sSLo /etc/php${PHP_PACKAGE_VERSION}/browscap.ini http://browscap.org/stream\?q=PHP_BrowsCapINI
