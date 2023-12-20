@@ -3,7 +3,7 @@
 if [[ "${PHP_SKIP_TEMPLATES}" != "true" ]]; then
     echo "> writing fpm config"
     gomplate -V \
-        -o /etc/php82/php-fpm.conf \
+        -o /etc/php83/php-fpm.conf \
         -f /etc/templates/php-fpm.conf.tmpl
 
     if [[ $? -ne 0 ]]; then
