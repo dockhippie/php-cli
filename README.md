@@ -14,7 +14,6 @@ For the available versions please look at [Docker Hub][dockerhub] or
 ## Volumes
 
 *  /srv/www
-*  /etc/php7/custom.d
 *  /etc/php8/custom.d
 
 ## Ports
@@ -24,6 +23,7 @@ For the available versions please look at [Docker Hub][dockerhub] or
 ## Available environment variables
 
 ```console
+GITHUB_TOKEN =
 PHP_ALLOW_URL_FOPEN = On
 PHP_ALLOW_URL_INCLUDE = Off
 PHP_COMPOSER_INSTALL = true
@@ -47,7 +47,7 @@ PHP_MAX_EXECUTION_TIME = 3600
 PHP_MAX_FILE_UPLOADS = 20
 PHP_MAX_INPUT_TIME = 3600
 PHP_MAX_REQUESTS = 500
-PHP_MEMORY_LIMIT = 512M
+PHP_MEMORY_LIMIT = 1G
 PHP_OUTPUT_BUFFERING = 4096
 PHP_PING_PATH = /ping
 PHP_PING_RESPONSE = pong
@@ -62,6 +62,8 @@ PHP_TRACK_ERRORS = Off
 PHP_UPLOAD_MAX_FILESIZE = 2G
 PHP_WEBROOT = /srv/www
 ```
+
+Extracted by the command: `grep -hE ': "\$\{(.*)\}"' latest/overlay/etc/entrypoint.d/*.sh | sed 's/: "\${//' | sed 's/:="/ = /' | sed 's/"}"$//' | sort | uniq`
 
 ## Inherited environment variables
 
