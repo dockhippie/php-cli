@@ -1,7 +1,7 @@
 ---
 repository:
   name: php-cli
-  description: Docker images for php-cli
+  description: Docker images for PHP CLI
   topics: docker, image
 
   private: false
